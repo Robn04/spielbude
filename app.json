@@ -1,13 +1,14 @@
 {
   "expo": {
-    "name": "Werwolf",
-    "slug": "Werwolf",
+    "name": "Spielbude",
+    "slug": "Spielbude",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "werwolf",
+    "scheme": "spielbude",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/party-pfeife.png",
+      "supportsTablet": true
     },
     "web": {
       "output": "static",
