@@ -1,7 +1,9 @@
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import Card from "./components/card";
 import TitleBar from "./components/titlebar";
+
+
 
 export default function Index() {
 
@@ -35,6 +37,9 @@ export default function Index() {
           }}
           activeOpacity={0.8}
         />
+        <Link href="/games/werwolf/participantsMenu">
+          Test
+        </Link>
       </View>
     </View>
   );
