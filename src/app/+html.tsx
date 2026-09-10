@@ -12,6 +12,11 @@ export default function Root({ children }: PropsWithChildren) {
                 />
 
                 <meta
+                    name="theme-color"
+                    content="#1d1d1f"
+                />
+
+                <meta
                     name="apple-mobile-web-app-capable"
                     content="yes"
                 />
