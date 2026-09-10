@@ -31,6 +31,8 @@ export default function Root({ children }: PropsWithChildren) {
                     content="Spielbude"
                 />
 
+                <link rel="manifest" href="/spielbude/manifest.json" />
+
                 <ScrollViewStyleReset />
             </head>
 

@@ -1,0 +1,9 @@
+{
+    "name": "Spielbude",
+    "short_name": "Spielbude",
+    "start_url": "/spielbude/",
+    "scope": "/spielbude/",
+    "display": "standalone",
+    "theme_color": "#1d1d1d",
+    "background_color": "#1d1d1d"
+}
