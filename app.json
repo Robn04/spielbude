@@ -17,7 +17,9 @@
       "name": "Spielbude",
       "shortName": "Spielbude",
       "themeColor": "#1d1d1d",
-      "backgroundColor": "#1d1d1d"
+      "backgroundColor": "#1d1d1d",
+      "scope": "/spielbude/",
+      "startUrl": "/spielbude/"
     },
     "plugins": [
       "expo-router",
