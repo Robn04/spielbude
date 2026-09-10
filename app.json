@@ -12,7 +12,12 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "display": "standalone",
+      "name": "Spielbude",
+      "shortName": "Spielbude",
+      "themeColor": "#1d1d1d",
+      "backgroundColor": "#1d1d1d"
     },
     "plugins": [
       "expo-router",
