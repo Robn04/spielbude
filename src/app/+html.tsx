@@ -13,7 +13,7 @@ export default function Root({ children }: PropsWithChildren) {
 
                 <meta
                     name="theme-color"
-                    content="#1d1d1f"
+                    content="#101010"
                 />
 
                 <meta
@@ -34,7 +34,7 @@ export default function Root({ children }: PropsWithChildren) {
                 <ScrollViewStyleReset />
             </head>
 
-            <body>{children}</body>
+            <body style={{ backgroundColor: "#101010" }} >{children}</body>
         </html>
     );
 }
