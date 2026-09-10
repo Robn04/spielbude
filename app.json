@@ -11,7 +11,7 @@
       "supportsTablet": true
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "favicon": "./assets/images/favicon.png",
       "display": "standalone",
       "name": "Spielbude",
