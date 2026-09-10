@@ -17,7 +17,8 @@
       "name": "Spielbude",
       "shortName": "Spielbude",
       "themeColor": "#1d1d1d",
-      "backgroundColor": "#1d1d1d"
+      "backgroundColor": "#1d1d1d",
+      "baseUrl": "/spielbude"
     },
     "plugins": [
       "expo-router",
@@ -32,8 +33,7 @@
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true,
-      "baseUrl": "/spielbude"
+      "reactCompiler": true
     }
   }
 }
