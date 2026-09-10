@@ -15,7 +15,9 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <GameProvider>
-        <Stack />
+        <Stack screenOptions={{
+          headerShown: false,
+        }} />
       </GameProvider>
     </GestureHandlerRootView>
   );
