@@ -1,4 +1,7 @@
 {
+    "name": "Spielbude",
+    "short_name": "Spielbude",
     "start_url": "/spielbude/",
-    "scope": "/spielbude/"
+    "scope": "/spielbude/",
+    "display": "standalone"
 }
