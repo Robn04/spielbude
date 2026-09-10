@@ -7,7 +7,7 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <TitleBar title="Spielbude" image={true} />
+      <TitleBar title="Spielbuden" image={true} />
       <View style={styles.contentContainer}>
         <Card
           title="Werwolf"
