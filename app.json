@@ -12,13 +12,13 @@
     },
     "web": {
       "output": "static",
-      "favicon": "/spielbude/assets/assets/party-pfeife.053c7156883cb874c199aeb8393a28c3.png",
+      "favicon": "/spielbude/party-pfeife.png",
       "display": "standalone",
       "name": "Spielbude",
       "shortName": "Spielbude",
       "icons": [
         {
-          "src": "/spielbude/assets/assets/party-pfeife.053c7156883cb874c199aeb8393a28c3.png",
+          "src": "/spielbude/party-pfeife.png",
           "sizes": "512x512",
           "type": "image/png",
           "purpose": "any"
