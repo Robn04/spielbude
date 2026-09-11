@@ -22,12 +22,6 @@
           "sizes": "512x512",
           "type": "image/png",
           "purpose": "maskable"
-        },
-        {
-          "src": "/spielbude/assets/assets/party-pfeife.053c7156883cb874c199aeb8393a28c3.png",
-          "sizes": "192x192",
-          "type": "image/png",
-          "purpose": "maskable"
         }
       ]
     },
