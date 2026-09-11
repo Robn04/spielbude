@@ -1,37 +1,23 @@
 {
   "expo": {
     "name": "Spielbude",
-    "slug": "Spielbude",
+    "slug": "spielbude",
     "version": "1.0.0",
     "orientation": "portrait",
     "scheme": "spielbude",
-    "userInterfaceStyle": "automatic",
-    "ios": {
-      "icon": "./assets/party-pfeife.png",
-      "supportsTablet": true
-    },
+    "userInterfaceStyle": "dark",
     "web": {
       "output": "static",
-      "favicon": "/spielbude/party-pfeife.png",
-      "display": "standalone",
-      "name": "Spielbude",
-      "shortName": "Spielbude",
-      "icons": [
-        {
-          "src": "/spielbude/party-pfeife.png",
-          "sizes": "512x512",
-          "type": "image/png",
-          "purpose": "any"
-        }
-      ]
+      "favicon": "/spielbude/party-pfeife-rund.png",
+      "display": "standalone"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
+          "backgroundColor": "#1d1d1d",
+          "image": "./assets/images/party-pfeife-rund.png",
           "imageWidth": 76
         }
       ]
