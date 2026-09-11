@@ -15,7 +15,14 @@
       "favicon": "./assets/images/favicon.png",
       "display": "standalone",
       "name": "Spielbude",
-      "shortName": "Spielbude"
+      "shortName": "Spielbude",
+      "icons": [
+        {
+          "src": "./assets/party-pfeife.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     "plugins": [
       "expo-router",
