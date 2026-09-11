@@ -9,7 +9,7 @@ export default function TitleBar({ title, image }: TitleBarProps) {
     return (
         <View style={styles.container}>
             {image &&
-                <Image source={require("../../../assets/party-pfeife.png")} style={styles.image} />}
+                <Image source={require("../../../assets/party-pfeife-rund.png")} style={styles.image} />}
             <Text style={[styles.title, !image && styles.titlewithoutImage]}>{title}</Text>
         </View>
     );
