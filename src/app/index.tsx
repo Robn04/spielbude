@@ -3,34 +3,33 @@ import { StyleSheet, View } from "react-native";
 import Card from "./components/card";
 import TitleBar from "./components/titlebar";
 
-
-
 export default function Index() {
-
   return (
     <View style={styles.container}>
       <TitleBar title="Spielbude" image={true} />
       <View style={styles.contentContainer}>
         <Card
-          title="Werwolf"
+          title="Werwolfi"
           image={{
-            source: require("../../assets/wolf.png")
+            source: require("../../assets/wolf.png"),
           }}
-          onPress={() => { router.push("/games/werwolf/participantsMenu"); }}
+          onPress={() => {
+            router.push("/games/werwolf/participantsMenu");
+          }}
           text={{
             textAlign: "center",
             fontWeight: "bold",
           }}
           activeOpacity={0.8}
-
-
         />
         <Card
           title="Wahrheit oder Pflicht"
           image={{
-            source: require("../../assets/gleichgewicht.png")
+            source: require("../../assets/gleichgewicht.png"),
           }}
-          onPress={() => { console.log("Wahrheit oder Pflicht geöffnet"); }}
+          onPress={() => {
+            console.log("Wahrheit oder Pflicht geöffnet");
+          }}
           text={{
             textAlign: "center",
             fontWeight: "bold",
@@ -53,7 +52,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     flexDirection: "column",
-    padding: 16
-
-  }
+    padding: 16,
+  },
 });
