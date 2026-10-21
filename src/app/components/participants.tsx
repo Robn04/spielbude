@@ -104,7 +104,6 @@ export default function ParticipantList() {
       <View style={styles.listContainer}>
         <DraggableFlatList<Player>
           style={{ flex: 1 }}
-          contentContainerStyle={{ paddingBottom: 8 }}
           data={players}
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
@@ -147,7 +146,11 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 15,
     marginHorizontal: 15,
+    minHeight: 0,
     overflow: "scroll",
+
+    borderWidth: 2,
+    borderColor: "green",
   },
 
   participant: {
