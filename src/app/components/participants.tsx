@@ -104,7 +104,6 @@ export default function ParticipantList() {
       {/* Teilnehmerliste */}
       <View style={styles.listContainer}>
         <DraggableFlatList<Player>
-          activationDistance={5}
           style={{ flex: 1 }}
           data={players}
           keyExtractor={(item) => item.id}
@@ -181,6 +180,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
+    touchAction: "none",
   },
 
   dragHandlePressed: {
