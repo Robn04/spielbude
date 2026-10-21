@@ -1,123 +1,120 @@
 import { router } from "expo-router";
 import { useState } from "react";
-import { Image, ImageBackground, StyleSheet, View } from "react-native";
+import {
+    Dimensions,
+    Image,
+    ImageBackground,
+    StyleSheet,
+    View,
+} from "react-native";
 import { useGame } from "../../../context/gameContext";
 import Button from "../../components/button";
 import FoldableCard from "../../components/foldableCards";
 import TitleBar from "../../components/titlebar";
 
+const { width, height } = Dimensions.get("window");
+
 export default function givenRolesMenu() {
-    const { players } = useGame();
-    const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
-    const currentPlayer = players[currentPlayerIndex];
-    const isLastPlayer = currentPlayerIndex === players.length - 1;
+  const { players } = useGame();
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+  const currentPlayer = players[currentPlayerIndex];
+  const isLastPlayer = currentPlayerIndex === players.length - 1;
 
-    return (
-        <ImageBackground
-            source={require("../../../../assets/werwolf-background.png")}
-            style={styles.container}
-            resizeMode="cover"
-        >
-            <View style={styles.overlay}>
-                <TitleBar title="Rollenvergabe" image={false} />
-                <View style={styles.roleCardContainer}>
+  return (
+    <ImageBackground
+      source={require("../../../../assets/werwolf-background.png")}
+      style={styles.container}
+      resizeMode="cover"
+    >
+      <View style={styles.overlay}>
+        <TitleBar title="Rollenvergabe" image={false} />
+        <View style={styles.roleCardContainer}>
+          <FoldableCard player={currentPlayer} />
+        </View>
 
-                    <FoldableCard
-                        player={currentPlayer}
-                    />
+        <View style={styles.coordinateButtonsContainer}>
+          <Button
+            icon={
+              <Image
+                source={require("../../../../assets/zuruck-pfeil.png")}
+                style={{ width: 24, height: 24, tintColor: "white" }}
+              />
+            }
+            onPress={() => router.back()}
+            width={50}
+            borderRadius={25}
+            style={styles.backButton}
+          />
 
-                </View>
+          <Button
+            title="Vorheriger"
+            onPress={() => {
+              if (currentPlayerIndex === 0) {
+                return;
+              }
 
-                <View style={styles.coordinateButtonsContainer}>
-                    <Button
-                        icon={
-                            <Image
-                                source={require("../../../../assets/zuruck-pfeil.png")}
-                                style={{ width: 24, height: 24, tintColor: "white" }}
-                            />}
-                        onPress={() => (router.back())}
-                        width={50}
+              setCurrentPlayerIndex((current) => current - 1);
+            }}
+            style={styles.beforeButton}
+            textColor="white"
+            width={150}
+          />
 
-                        borderRadius={25}
-                        style={styles.backButton}
-                    />
+          <Button
+            title={isLastPlayer ? "Spiel starten" : "Nächster"}
+            onPress={() => {
+              if (isLastPlayer) {
+                router.push("/games/werwolf/storyMenu");
+              }
 
-                    <Button
-                        title="Vorheriger"
-                        onPress={() => {
-                            if (currentPlayerIndex === 0) {
-                                return;
-                            }
-
-                            setCurrentPlayerIndex(current => current - 1);
-                        }}
-                        style={styles.beforeButton}
-                        textColor="white"
-                        width={150}
-                    />
-
-                    <Button
-                        title={isLastPlayer ? "Spiel starten" : "Nächster"}
-                        onPress={() => {
-                            if (isLastPlayer) {
-                                router.push("/games/werwolf/storyMenu");
-                            }
-
-                            setCurrentPlayerIndex(current => current + 1);
-                        }}
-                        style={styles.nextButton}
-                        textColor="white"
-                        width={150}
-                    />
-                </View>
-
-
-            </View>
-
-        </ImageBackground>
-    );
+              setCurrentPlayerIndex((current) => current + 1);
+            }}
+            style={styles.nextButton}
+            textColor="white"
+            width={150}
+          />
+        </View>
+      </View>
+    </ImageBackground>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+  container: {
+    flex: 1,
+    width: width,
+    height: height,
+  },
 
-    },
+  overlay: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+  },
 
-    overlay: {
-        ...StyleSheet.absoluteFill,
-        backgroundColor: "rgba(0, 0, 0, 0.6)",
+  roleCardContainer: {
+    height: "75%",
+    padding: 20,
+  },
 
-    },
+  coordinateButtonsContainer: {
+    zIndex: 101,
 
-    roleCardContainer: {
-        height: "75%",
-        padding: 20,
+    height: "20%",
 
-    },
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
 
+    padding: 26,
+  },
 
-    coordinateButtonsContainer: {
-        zIndex: 101,
+  backButton: {},
 
-        height: "20%",
+  beforeButton: {
+    width: 120,
+  },
 
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "flex-start",
-
-        padding: 26
-    },
-
-    backButton: {
-
-    },
-
-    beforeButton: {
-        width: 120,
-    },
-
-    nextButton: {
-        width: 120
-    },
+  nextButton: {
+    width: 120,
+  },
 });
