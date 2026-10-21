@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
   },
 
   roleCardContainer: {
+    flex: 1,
     height: "75%",
     padding: 20,
   },

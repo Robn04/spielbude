@@ -263,6 +263,7 @@ const styles = StyleSheet.create({
   roleCounter: {},
 
   scrollViewContainer: {
+    flex: 1,
     padding: 20,
     paddingBottom: 0,
     height: "75%",

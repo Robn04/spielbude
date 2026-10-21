@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
   inputRow: {
     flexDirection: "row",
     gap: 0,
-    paddingHorizontal: 15,
+    padding: 20,
+    paddingBottom: 0,
   },
 
   input: {
@@ -145,12 +146,9 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
     marginTop: 15,
-    marginHorizontal: 15,
     minHeight: 0,
     overflow: "scroll",
-
-    borderWidth: 2,
-    borderColor: "green",
+    paddingHorizontal: 20,
   },
 
   participant: {
