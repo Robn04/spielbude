@@ -62,6 +62,7 @@ export default function ParticipantList() {
           <Pressable
             onLongPress={drag}
             delayLongPress={150}
+            disabled={isActive}
             style={({ pressed }) => [
               styles.dragHandle,
               pressed && styles.dragHandlePressed,
@@ -103,6 +104,7 @@ export default function ParticipantList() {
       {/* Teilnehmerliste */}
       <View style={styles.listContainer}>
         <DraggableFlatList<Player>
+          activationDistance={5}
           style={{ flex: 1 }}
           data={players}
           keyExtractor={(item) => item.id}
