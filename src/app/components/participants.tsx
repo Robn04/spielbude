@@ -104,6 +104,7 @@ export default function ParticipantList() {
       {/* Teilnehmerliste */}
       <View style={styles.listContainer}>
         <DraggableFlatList<Player>
+          activationDistance={1}
           style={{ flex: 1 }}
           data={players}
           keyExtractor={(item) => item.id}
