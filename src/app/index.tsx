@@ -9,7 +9,7 @@ export default function Index() {
       <TitleBar title="Spielbude" image={true} />
       <View style={styles.contentContainer}>
         <Card
-          title="Werwolfi"
+          title="Werwolf"
           image={{
             source: require("../../assets/wolf.png"),
           }}
