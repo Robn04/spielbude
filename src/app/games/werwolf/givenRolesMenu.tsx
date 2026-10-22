@@ -1,11 +1,11 @@
 import { router } from "expo-router";
 import { useState } from "react";
 import {
-    Dimensions,
-    Image,
-    ImageBackground,
-    StyleSheet,
-    View,
+  Dimensions,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  View,
 } from "react-native";
 import { useGame } from "../../../context/gameContext";
 import Button from "../../components/button";
@@ -65,6 +65,7 @@ export default function givenRolesMenu() {
             onPress={() => {
               if (isLastPlayer) {
                 router.push("/games/werwolf/storyMenu");
+                return;
               }
 
               setCurrentPlayerIndex((current) => current + 1);

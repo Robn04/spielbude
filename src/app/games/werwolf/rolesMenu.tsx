@@ -1,12 +1,12 @@
 import { router } from "expo-router";
 import { useState } from "react";
 import {
-    Dimensions,
-    Image,
-    ImageBackground,
-    ScrollView,
-    StyleSheet,
-    View,
+  Dimensions,
+  Image,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  View,
 } from "react-native";
 import { useGame } from "../../../context/gameContext";
 import Button from "../../components/button";

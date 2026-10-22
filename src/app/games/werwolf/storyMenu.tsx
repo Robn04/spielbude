@@ -1,15 +1,75 @@
+import StoryCard from "@/app/components/storyCard";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Image, ImageBackground, StyleSheet, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  View,
+} from "react-native";
 import { useGame } from "../../../context/gameContext";
 import Button from "../../components/button";
 import TitleBar from "../../components/titlebar";
 
+const { width, height } = Dimensions.get("window");
+
+type StoryStep = {
+  role: string | null;
+  title: string;
+  description: string;
+};
+
+const NIGHT_STEPS: StoryStep[] = [
+  {
+    role: null,
+    title: "Alle gehen schlafen",
+    description: "Das Dorf wird ruhig. Alle Spieler schließen die Augen.",
+  },
+  {
+    role: "Dorfmatratze",
+    title: "Die Dorfmatratze erwacht",
+    description: "Die Dorfmatratze führt ihre Nachtaktion aus.",
+  },
+  {
+    role: "Werwolf",
+    title: "Die Werwölfe erwachen",
+    description: "Die Werwölfe wählen gemeinsam ein Opfer.",
+  },
+  {
+    role: "Seherin",
+    title: "Die Seherin erwacht",
+    description: "Die Seherin darf die Rolle eines Spielers überprüfen.",
+  },
+  {
+    role: "Hexe",
+    title: "Die Hexe erwacht",
+    description: "Die Hexe entscheidet, ob sie heilt oder jemanden vergiftet.",
+  },
+  {
+    role: null,
+    title: "Alle wachen auf",
+    description: "Das Dorf erfährt, was in der Nacht passiert ist.",
+  },
+];
+
 export default function storyMenu() {
-  const { players } = useGame();
-  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
-  const currentPlayer = players[currentPlayerIndex];
-  const isLastPlayer = currentPlayerIndex === players.length - 1;
+  const { players, setPlayers } = useGame();
+
+  const [currentNight, setCurrentNight] = useState(1);
+  const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
+
+  const availableRoles = new Set(players.map((player) => player.role));
+
+  const activeStories = NIGHT_STEPS.filter(
+    (step) => step.role === null || availableRoles.has(step.role),
+  );
+  const alivePlayers = players.filter((player) => player.alive);
+
+  const currentStory = activeStories[currentStoryIndex];
+
+  console.log("Aktueller Schritt:", currentStory);
+  console.log("Lebende Spieler:", alivePlayers);
 
   return (
     <ImageBackground
@@ -19,7 +79,29 @@ export default function storyMenu() {
     >
       <View style={styles.overlay}>
         <TitleBar title="Spielverlauf" image={false} />
-        <View style={styles.gameContainer}></View>
+
+        <View style={styles.gameContainer}>
+          <StoryCard
+            title={`Nacht ${currentNight}: ${currentStory.title}`}
+            description={currentStory.description}
+          >
+            {currentStory.role === "Werwolf" && (
+              <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+                {alivePlayers.map((player) => (
+                  <View key={player.id} style={{ width: "48%" }}>
+                    <Button
+                      title={player.name}
+                      onPress={() => {}}
+                      width="100%"
+                      backgroundColor="white"
+                      textColor="#ff196d"
+                    />
+                  </View>
+                ))}
+              </View>
+            )}
+          </StoryCard>
+        </View>
 
         <View style={styles.coordinateButtonsContainer}>
           <Button
@@ -36,13 +118,14 @@ export default function storyMenu() {
           />
 
           <Button
-            title="Abbrechen"
+            title="Zurück"
             onPress={() => {
-              if (currentPlayerIndex === 0) {
-                return;
+              if (currentStoryIndex > 0) {
+                setCurrentStoryIndex((current) => current - 1);
+              } else if (currentNight > 1) {
+                setCurrentNight((current) => current - 1);
+                setCurrentStoryIndex(activeStories.length - 1);
               }
-
-              setCurrentPlayerIndex((current) => current - 1);
             }}
             style={styles.beforeButton}
             textColor="white"
@@ -50,13 +133,14 @@ export default function storyMenu() {
           />
 
           <Button
-            title={"Weiter"}
+            title="Weiter"
             onPress={() => {
-              if (isLastPlayer) {
-                router.push("/games/werwolf/storyMenu");
+              if (currentStoryIndex < activeStories.length - 1) {
+                setCurrentStoryIndex((current) => current + 1);
+              } else {
+                setCurrentNight((current) => current + 1);
+                setCurrentStoryIndex(0);
               }
-
-              setCurrentPlayerIndex((current) => current + 1);
             }}
             style={styles.nextButton}
             textColor="white"
@@ -71,6 +155,8 @@ export default function storyMenu() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: width,
+    height: height,
   },
 
   overlay: {
@@ -79,8 +165,10 @@ const styles = StyleSheet.create({
   },
 
   gameContainer: {
+    flex: 1,
     height: "75%",
     padding: 20,
+    justifyContent: "center",
   },
 
   coordinateButtonsContainer: {

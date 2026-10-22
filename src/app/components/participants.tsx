@@ -1,14 +1,14 @@
 import { useState } from "react";
 import {
-    Dimensions,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  Dimensions,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 import DraggableFlatList, {
-    RenderItemParams,
+  RenderItemParams,
 } from "react-native-draggable-flatlist";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import { Player, useGame } from "../../context/gameContext";
@@ -32,6 +32,7 @@ export default function ParticipantList() {
       {
         id: `${Date.now()}-${Math.random()}`,
         name: trimmedName,
+        alive: true,
       },
     ]);
     setName("");
