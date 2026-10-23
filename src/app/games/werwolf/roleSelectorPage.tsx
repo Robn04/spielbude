@@ -1,9 +1,9 @@
-import NavigationButtons from "@/app/components/navigationButtons";
 import { router } from "expo-router";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useGame } from "../../../context/gameContext";
 import Card from "../../components/card";
+import NavigationButtons from "../../components/navigationButtons";
 import Sidebar from "../../components/sidebar";
 import TitleBar from "../../components/titlebar";
 import WerwolfLayout from "./gameLayout";

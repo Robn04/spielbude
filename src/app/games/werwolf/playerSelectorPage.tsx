@@ -1,6 +1,6 @@
-import NavigationButtons from "@/app/components/navigationButtons";
 import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
+import NavigationButtons from "../../components/navigationButtons";
 import ParticipantList from "../../components/participants";
 import TitleBar from "../../components/titlebar";
 import WerwolfLayout from "./gameLayout";

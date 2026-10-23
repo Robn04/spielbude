@@ -1,10 +1,10 @@
-import NavigationButtons from "@/app/components/navigationButtons";
-import StoryCard from "@/app/components/storyCard";
 import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useGame } from "../../../context/gameContext";
 import Button from "../../components/button";
+import NavigationButtons from "../../components/navigationButtons";
+import StoryCard from "../../components/storyCard";
 import TitleBar from "../../components/titlebar";
 import WerwolfLayout from "./gameLayout";
 
