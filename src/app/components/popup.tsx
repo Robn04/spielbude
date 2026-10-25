@@ -4,34 +4,51 @@ import { Modal, Pressable, StyleSheet, Text } from "react-native";
 type InfoPopupProps = {
   text: string;
   selected: boolean;
+  visible?: boolean;
+  onClose?: () => void;
+  hideButton?: boolean;
 };
 
-export default function InfoPopup({ text, selected }: InfoPopupProps) {
-  const [visible, setVisible] = useState(false);
+export default function InfoPopup({
+  text,
+  selected,
+  visible: externalVisible,
+  onClose,
+  hideButton = false,
+}: InfoPopupProps) {
+  const [internalVisible, setInternalVisible] = useState(false);
+
+  const visible = externalVisible ?? internalVisible;
+  const closePopup = () => {
+    setInternalVisible(false);
+    onClose?.();
+  };
 
   return (
     <>
-      <Pressable
-        style={[styles.infoButton, selected && styles.infoButtonSelected]}
-        onPress={() => setVisible(true)}
-      >
-        <Text style={[styles.infoText, selected && styles.infoTextSelected]}>
-          i
-        </Text>
-      </Pressable>
+      {!hideButton && (
+        <Pressable
+          style={[styles.infoButton, selected && styles.infoButtonSelected]}
+          onPress={() => setInternalVisible(true)}
+        >
+          <Text style={[styles.infoText, selected && styles.infoTextSelected]}>
+            i
+          </Text>
+        </Pressable>
+      )}
 
       <Modal
         visible={visible}
         transparent
         animationType="fade"
-        onRequestClose={() => setVisible(false)}
+        onRequestClose={closePopup}
       >
-        <Pressable style={styles.overlay} onPress={() => setVisible(false)}>
+        <Pressable style={styles.overlay} onPress={closePopup}>
           <Pressable style={styles.popup}>
             {/* Schließen */}
             <Pressable
               style={styles.closeButton}
-              onPress={() => setVisible(false)}
+              onPress={closePopup}
               hitSlop={10}
             >
               <Text style={styles.closeText}>×</Text>

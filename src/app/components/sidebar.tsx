@@ -28,14 +28,11 @@ export default function Sidebar({
       <BlurView
         style={styles.sidebarContainer}
         tint="systemChromeMaterialDark"
-        intensity={90}
+        intensity={85}
       >
         <View style={styles.sidebarContent}>
           <Text style={styles.title}>{title}</Text>
-          <ScrollView
-            style={styles.list}
-            contentContainerStyle={styles.listContent}
-          >
+          <ScrollView style={styles.list}>
             {uniqueRoles.map((role) => (
               <View key={role} style={styles.listContainer}>
                 <Text key={role} style={styles.listItem}>
@@ -78,19 +75,13 @@ export default function Sidebar({
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    width: "100%",
+    height: "100%",
     zIndex: 100,
   },
 
   sidebarContainer: {
     flex: 1,
-    justifyContent: "flex-start",
-
-    width: "100%",
-    height: "100%",
   },
 
   sidebarContent: {
@@ -123,20 +114,14 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
 
-  listContent: {
-    justifyContent: "center",
-  },
-
   listContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignContent: "center",
+    marginBottom: 12,
   },
 
   listItem: {
     color: "white",
-    padding: 12,
-    paddingTop: 0,
     fontSize: 18,
     fontWeight: "bold",
   },
@@ -144,7 +129,6 @@ const styles = StyleSheet.create({
   counter: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 12,
     gap: 8,
   },
 

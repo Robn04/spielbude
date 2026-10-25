@@ -26,5 +26,6 @@ const styles = StyleSheet.create({
   participantContainer: {
     flex: 1,
     height: "100%",
+    padding: 24,
   },
 });

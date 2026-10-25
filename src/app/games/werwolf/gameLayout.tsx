@@ -10,9 +10,7 @@ export default function WerwolfLayout({ children }: PropsWithChildren) {
       style={styles.background}
       resizeMode="cover"
     >
-      <View style={styles.overlay}>
-        <View style={styles.content}>{children}</View>
-      </View>
+      <View style={styles.overlay}>{children}</View>
     </ImageBackground>
   );
 }
@@ -21,10 +19,6 @@ const styles = StyleSheet.create({
   background: {
     width: width,
     height: height,
-  },
-
-  content: {
-    flex: 1,
   },
 
   overlay: {

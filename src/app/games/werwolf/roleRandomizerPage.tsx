@@ -47,7 +47,6 @@ export default function RoleRandomizer() {
 const styles = StyleSheet.create({
   roleCardContainer: {
     flex: 1,
-    height: "100%",
-    padding: 20,
+    padding: 24,
   },
 });

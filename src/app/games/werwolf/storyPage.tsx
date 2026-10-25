@@ -1,9 +1,10 @@
 import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { useGame } from "../../../context/gameContext";
+import { Player, useGame } from "../../../context/gameContext";
 import Button from "../../components/button";
 import NavigationButtons from "../../components/navigationButtons";
+import InfoPopup from "../../components/popup";
 import StoryCard from "../../components/storyCard";
 import TitleBar from "../../components/titlebar";
 import WerwolfLayout from "./gameLayout";
@@ -49,6 +50,10 @@ const NIGHT_STEPS: StoryStep[] = [
 
 export default function StoryPage() {
   const { players, setPlayers } = useGame();
+  const [selectedVictimId, setSelectedVictimId] = useState<string | null>(null);
+  const [selectedSeerPlayer, setSelectedSeerPlayer] = useState<Player | null>(
+    null,
+  );
 
   const [currentNight, setCurrentNight] = useState(1);
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
@@ -62,9 +67,7 @@ export default function StoryPage() {
 
   const currentStory = activeStories[currentStoryIndex];
 
-  console.log("Aktueller Schritt:", currentStory);
-  console.log("Lebende Spieler:", alivePlayers);
-
+  console.log(players);
   return (
     <WerwolfLayout>
       <TitleBar title="Spielverlauf" image={false} />
@@ -74,20 +77,61 @@ export default function StoryPage() {
           title={`Nacht ${currentNight}: ${currentStory.title}`}
           description={currentStory.description}
         >
-          {currentStory.role === "Werwolf" && (
+          {(currentStory.role === "Werwolf" ||
+            currentStory.role === "Seherin") && (
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
-              {alivePlayers.map((player) => (
+              {players.map((player) => (
                 <View key={player.id} style={{ width: "48%" }}>
                   <Button
                     title={player.name}
-                    onPress={() => {}}
+                    onPress={() => {
+                      if (currentStory.role === "Seherin") {
+                        setSelectedSeerPlayer(player);
+                      } else if (currentStory.role === "Werwolf") {
+                        setPlayers((currentPlayers) =>
+                          currentPlayers.map((p) => ({
+                            ...p,
+                            alive:
+                              p.id === player.id
+                                ? false
+                                : p.id === selectedVictimId
+                                  ? true
+                                  : p.alive,
+                          })),
+                        );
+
+                        setSelectedVictimId(player.id);
+                      }
+                    }}
                     width="100%"
-                    backgroundColor="white"
-                    textColor="#ff196d"
+                    backgroundColor={
+                      currentStory.role === "Werwolf" &&
+                      selectedVictimId === player.id
+                        ? "#ff196d"
+                        : "white"
+                    }
+                    textColor={
+                      currentStory.role === "Werwolf" &&
+                      selectedVictimId === player.id
+                        ? "white"
+                        : "#ff196d"
+                    }
+                    borderWidth={2}
+                    borderColor="white"
                   />
                 </View>
               ))}
             </View>
+          )}
+
+          {currentStory.role === "Seherin" && (
+            <InfoPopup
+              text={`${selectedSeerPlayer?.role ?? "Abgeschlossen"}`}
+              selected={false}
+              visible={selectedSeerPlayer !== null}
+              onClose={() => setSelectedSeerPlayer(null)}
+              hideButton
+            />
           )}
         </StoryCard>
       </View>
@@ -120,8 +164,7 @@ export default function StoryPage() {
 const styles = StyleSheet.create({
   gameContainer: {
     flex: 1,
-    height: "100%",
-    padding: 20,
+    padding: 24,
     justifyContent: "center",
   },
 });

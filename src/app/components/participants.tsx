@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Dimensions,
   Pressable,
@@ -19,6 +19,7 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 export default function ParticipantList() {
   const [name, setName] = useState("");
   const { players, setPlayers } = useGame();
+  const inputRef = useRef<TextInput>(null);
 
   const addParticipant = () => {
     const trimmedName = name.trim();
@@ -36,6 +37,7 @@ export default function ParticipantList() {
       },
     ]);
     setName("");
+    inputRef.current?.focus();
   };
 
   const renderItem = ({ item, drag, isActive }: RenderItemParams<Player>) => {
@@ -83,11 +85,13 @@ export default function ParticipantList() {
         <TextInput
           value={name}
           onChangeText={setName}
-          placeholder="Name eingeben"
+          placeholder="Namen eingeben"
           placeholderTextColor="#888"
           style={styles.input}
           onSubmitEditing={addParticipant}
+          submitBehavior="submit"
           returnKeyType="done"
+          ref={inputRef}
         />
 
         <Button
@@ -126,14 +130,12 @@ const styles = StyleSheet.create({
 
   inputRow: {
     flexDirection: "row",
-    gap: 0,
-    padding: 20,
-    paddingBottom: 0,
+    marginBottom: 15,
   },
 
   input: {
     flex: 1,
-    height: 50,
+
     paddingHorizontal: 15,
     borderRadius: 10,
     borderTopRightRadius: 0,
@@ -148,19 +150,15 @@ const styles = StyleSheet.create({
 
   listContainer: {
     flex: 1,
-    marginTop: 15,
-    minHeight: 0,
     overflow: "scroll",
-    paddingHorizontal: 20,
   },
 
   participant: {
     width: "100%",
-    alignSelf: "center",
+
     flexDirection: "row",
     alignItems: "center",
     height: 50,
-    paddingVertical: 8,
     paddingHorizontal: 15,
     marginBottom: 8,
     borderRadius: 10,
